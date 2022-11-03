@@ -5,11 +5,12 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/TenantService/TenantService.csproj", "src/TenantService/"]
-COPY ["src/Shared/Shared.csproj", "src/Shared/"]
-RUN dotnet restore "src/TenantService/TenantService.csproj"
+COPY ["Directory.Build.props", "Directory.Build.props"]
+COPY ["TenantService/TenantService.csproj", "TenantService/"]
+COPY ["Shared/Shared.csproj", "Shared/"]
+RUN dotnet restore "TenantService/TenantService.csproj"
 COPY . .
-WORKDIR "/src/src/TenantService"
+WORKDIR "/src/TenantService"
 RUN dotnet build "TenantService.csproj" -c Release -o /app/build
 
 FROM build AS publish

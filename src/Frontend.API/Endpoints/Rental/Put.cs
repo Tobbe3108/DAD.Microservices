@@ -20,7 +20,7 @@ public class Put : EndpointBaseAsync.WithRequest<int>.WithActionResult
     _bus = bus;
   }
 
-  [HttpPut("Rental/{Id:int}")]
+  [HttpPut("Rental/{id:int}")]
   [SwaggerOperation(Summary = "Updates a Rental",
     Description = "Updates a Rental",
     OperationId = "Rental.Update",

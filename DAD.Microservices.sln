@@ -8,7 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TenantService", "src\Tenant
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{82062B5D-F1DD-42E4-AC36-EFD662C37AB1}"
 	ProjectSection(SolutionItems) = preProject
-		Directory.Build.props = Directory.Build.props
+		src\Directory.Build.props = src\Directory.Build.props
+		docker-compose.yml = docker-compose.yml
+		configmap-deployment.yaml = configmap-deployment.yaml
+		mssql-deployment.yaml = mssql-deployment.yaml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{10DE3F69-9104-49E7-9191-180975B81A03}"

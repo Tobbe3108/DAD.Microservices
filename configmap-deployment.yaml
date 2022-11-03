@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: base-configmap
+data:
+  RabbitMqSettings__Host: "host.docker.internal"
+  RabbitMqSettings__Port: "5672"
+  RabbitMqSettings__VHost: "/"
+  RabbitMqSettings__User: "guest"
+  RabbitMqSettings__Password: "guest"
+
+  Serilog__MinimumLevel__Default: "Debug"
+  Serilog__MinimumLevel__Override__Microsoft: "Warning"
+  Serilog__MinimumLevel__Override__System: "Warning"
+  Serilog__MinimumLevel__Override__MassTransit: "Warning"
+
+  ConnectionStrings__Seq: "http://host.docker.internal:5341"
+  ConnectionStrings__DAD: "Server=mssql-clusterip-srv;Database=master;User Id=sa;Password=P@ssw0rd;TrustServerCertificate=True;"

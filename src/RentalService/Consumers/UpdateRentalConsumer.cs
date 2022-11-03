@@ -29,7 +29,7 @@ public class UpdateRentalConsumer : IConsumer<UpdateRental>
     context.Message.Adapt(dbModel);
     await _rentalDbContext.SaveChangesAsync();
 
-    await context.Publish(new RentalDeleted(context.Message.Id));
-    _logger.LogInformation("Published {Event} event", nameof(RentalDeleted));
+    await context.Publish(new RentalUpdated(context.Message.Id));
+    _logger.LogInformation("Published {Event} event", nameof(RentalUpdated));
   }
 }

@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - image: dad/frontend:latest
+          imagePullPolicy: IfNotPresent
+          name: frontend
+          ports:
+            - containerPort: 80
+          env:
+            - name: RentalService
+              value: http://rental-service
+          envFrom:
+            - configMapRef:
+                name: base-configmap
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  labels:
+    app: frontend
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 5030
+      targetPort: 80
+  selector:
+    app: frontend

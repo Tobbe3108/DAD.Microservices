@@ -1,8 +1,13 @@
+#pragma warning disable CS8618
 namespace Frontend.API.Features.Rental;
 
-public record Rental(string StateAbbr,
-  string BuildingNumber,
-  string SecondaryAddress,
-  string ZipCode,
-  string City,
-  string Country);
+public class Rental
+{
+  public int Id { get; set; }
+  public string StateAbbr { get; set; }
+  public string BuildingNumber { get; set; }
+  public string SecondaryAddress { get; set; }
+  public string ZipCode { get; set; }
+  public string City { get; set; }
+  public string Country { get; set; }
+}

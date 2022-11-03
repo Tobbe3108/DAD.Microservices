@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rental
+  name: rental
+spec:
+  selector:
+    matchLabels:
+      app: rental
+  template:
+    metadata:
+      labels:
+        app: rental
+    spec:
+      containers:
+        - image: dad/rental:latest
+          imagePullPolicy: IfNotPresent
+          name: rental
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: base-configmap
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: rental-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rental
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rental-service
+  labels:
+    app: rental
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: rental

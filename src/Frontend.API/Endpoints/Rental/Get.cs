@@ -18,7 +18,7 @@ public class Get : EndpointBaseAsync.WithRequest<int>.WithActionResult
     _rentalServiceApi = rentalServiceApi;
   }
 
-  [HttpGet("Rental/{Id:int}")]
+  [HttpGet("Rental/{id:int}")]
   [SwaggerOperation(Summary = "Gets a Rental",
     Description = "Gets a Rental",
     OperationId = "Rental.Get",

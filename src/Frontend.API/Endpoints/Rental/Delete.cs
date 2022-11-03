@@ -17,7 +17,7 @@ public class Delete : EndpointBaseAsync.WithRequest<int>.WithActionResult
     _bus = bus;
   }
 
-  [HttpDelete("Rental/{Id:int}")]
+  [HttpDelete("Rental/{id:int}")]
   [SwaggerOperation(Summary = "Deletes a Rental",
     Description = "Deletes a Rental",
     OperationId = "Rental.Delete",
